@@ -1,0 +1,245 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#F4F6FB;
+    color:#1E293B;
+    padding-bottom:30px;
+}
+
+.header{
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+    color:white;
+    padding:25px;
+    border-radius:0 0 25px 25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.header-com-logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logo-header{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    flex-shrink:0;
+}
+
+.header h1{
+    font-size:20px;
+}
+
+.header p{
+    font-size:13px;
+    opacity:.85;
+}
+
+.container{
+    max-width:480px;
+    margin:0 auto;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* ---------------- CARD: TREINO DE HOJE ---------------- */
+
+.card-treino-hoje{
+    background:linear-gradient(135deg,#1E293B,#334155);
+    color:white;
+    border-radius:20px;
+    padding:24px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(30,41,59,.25);
+}
+
+.rotulo-treino{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    opacity:.75;
+}
+
+.card-treino-hoje h2{
+    font-size:38px;
+    margin:8px 0 18px;
+}
+
+.botao-iniciar-treino{
+    background:#2563EB;
+    color:white;
+    border:none;
+    padding:14px 30px;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+    width:100%;
+}
+
+.botao-iniciar-treino:hover{
+    background:#1D4ED8;
+}
+
+/* ---------------- ESTATÍSTICAS ---------------- */
+
+.grid-estatisticas{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:10px;
+}
+
+.stat-card{
+    background:white;
+    border-radius:14px;
+    padding:14px 8px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.stat-icone{
+    font-size:20px;
+}
+
+.stat-valor{
+    font-size:18px;
+    font-weight:bold;
+    color:#1E293B;
+}
+
+.stat-rotulo{
+    font-size:11px;
+    color:#64748B;
+    text-align:center;
+}
+
+/* ---------------- RECOMENDAÇÃO ---------------- */
+
+.card-recomendacao{
+    background:#EFF6FF;
+    border:1px solid #BFDBFE;
+    border-radius:14px;
+    padding:16px;
+}
+
+.card-recomendacao p{
+    font-size:14px;
+    color:#1E3A8A;
+    line-height:1.5;
+}
+
+/* ---------------- SEÇÕES ---------------- */
+
+.secao-titulo{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.secao-titulo h2{
+    font-size:16px;
+    color:#1E293B;
+}
+
+.link-ver-todas{
+    font-size:13px;
+    color:#2563EB;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* ---------------- MATÉRIAS ---------------- */
+
+.lista-materias{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.card-materia{
+    background:white;
+    border-radius:14px;
+    padding:14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+    text-decoration:none;
+    color:inherit;
+}
+
+.materia-icone{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    flex-shrink:0;
+}
+
+.materia-info{
+    flex:1;
+    min-width:0;
+}
+
+.materia-nome{
+    font-size:14px;
+    font-weight:bold;
+    color:#1E293B;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.materia-status{
+    font-size:12px;
+    color:#64748B;
+}
+
+/* ---------------- TECHNICAL ENGLISH ---------------- */
+
+.card-ingles{
+    background:white;
+    border-radius:14px;
+    padding:16px;
+    display:flex;
+    justify-content:space-around;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.ingles-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+}
+
+.ingles-numero{
+    font-size:20px;
+    font-weight:bold;
+    color:#2563EB;
+}
+
+.ingles-rotulo{
+    font-size:11px;
+    color:#64748B;
+}
