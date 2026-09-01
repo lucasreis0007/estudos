@@ -1,0 +1,194 @@
+import {
+    auth,
+    db,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    doc,
+    setDoc
+} from "./firebase-config.js";
+import { t, obterIdioma, definirIdioma, aplicarTraducoes } from "./language.js";
+
+aplicarTraducoes();
+
+const seletorIdiomaLogin = document.getElementById("seletorIdiomaLogin");
+
+function marcarIdiomaAtivo() {
+    const idioma = obterIdioma();
+    seletorIdiomaLogin.querySelectorAll(".opcao-idioma-login").forEach(botao => {
+        botao.classList.toggle("ativo", botao.dataset.idioma === idioma);
+    });
+}
+
+marcarIdiomaAtivo();
+
+seletorIdiomaLogin.querySelectorAll(".opcao-idioma-login").forEach(botao => {
+    botao.addEventListener("click", () => {
+        definirIdioma(botao.dataset.idioma);
+        aplicarTraducoes();
+        marcarIdiomaAtivo();
+    });
+});
+
+const formLogin = document.getElementById("formLogin");
+const formCadastro = document.getElementById("formCadastro");
+const erroLogin = document.getElementById("erroLogin");
+const erroCadastro = document.getElementById("erroCadastro");
+const linkTrocarTela = document.getElementById("linkTrocarTela");
+const linkTrocarTelaCadastro = document.getElementById("linkTrocarTelaCadastro");
+
+let telaAtual = "login";
+
+function mostrarTela(tela) {
+    telaAtual = tela;
+    formLogin.classList.toggle("oculto", tela !== "login");
+    formCadastro.classList.toggle("oculto", tela !== "cadastro");
+    erroLogin.textContent = "";
+    erroCadastro.textContent = "";
+}
+
+mostrarTela("login");
+
+// ---------------- CADASTRO ----------------
+
+formCadastro.addEventListener("submit", async (evento) => {
+
+    evento.preventDefault();
+    erroCadastro.textContent = "";
+
+    const email = document.getElementById("cadEmail").value.trim();
+    const senha = document.getElementById("cadSenha").value;
+    const confirmar = document.getElementById("cadConfirmar").value;
+
+    if (senha !== confirmar) {
+        erroCadastro.textContent = t("auth.passwordMismatch");
+        return;
+    }
+
+    try {
+
+        const credencial = await createUserWithEmailAndPassword(auth, email, senha);
+
+        // Cria o documento de perfil do usuário (coleção "users", ver
+        // js/data/ e o schema descrito no planejamento). Dados como XP,
+        // nível e sequência começam zerados; idioma e modo de estudo são
+        // definidos no onboarding/teste de nivelamento (próxima etapa).
+        await setDoc(doc(db, "users", credencial.user.uid), {
+            name: "",
+            xp: 0,
+            level: 1,
+            streak: 0,
+            totalStudyTime: 0,
+            exercisesDone: 0,
+            correctAnswers: 0,
+            language: obterIdioma(),
+            studyMode: null,
+            onboardingCompleto: false,
+            createdAt: new Date().toISOString()
+        });
+
+        window.location.href = "pages/dashboard.html";
+
+    } catch (erro) {
+        erroCadastro.textContent = traduzirErro(erro);
+    }
+
+});
+
+// ---------------- LOGIN ----------------
+
+formLogin.addEventListener("submit", async (evento) => {
+
+    evento.preventDefault();
+    erroLogin.textContent = "";
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const senha = document.getElementById("loginSenha").value;
+
+    try {
+        await signInWithEmailAndPassword(auth, email, senha);
+        window.location.href = "pages/dashboard.html";
+    } catch (erro) {
+        erroLogin.textContent = traduzirErro(erro);
+    }
+
+});
+
+// ---------------- MOSTRAR/OCULTAR SENHA ----------------
+
+document.querySelectorAll(".toggle-senha").forEach(botao => {
+
+    const olhoAberto = botao.querySelector(".icone-olho-aberto");
+    const olhoFechado = botao.querySelector(".icone-olho-fechado");
+
+    botao.addEventListener("click", () => {
+
+        const campo = document.getElementById(botao.dataset.alvo);
+        const oculta = campo.type === "password";
+
+        campo.type = oculta ? "text" : "password";
+
+        olhoAberto.classList.toggle("oculto", oculta);
+        olhoFechado.classList.toggle("oculto", !oculta);
+
+        botao.setAttribute("aria-label", oculta ? "Ocultar senha" : "Mostrar senha");
+    });
+
+});
+
+// ---------------- AVISO DE CAPS LOCK ----------------
+
+const camposComAvisoCaps = [
+    ["loginSenha", "capsLoginSenha"],
+    ["cadSenha", "capsCadSenha"],
+    ["cadConfirmar", "capsCadConfirmar"]
+];
+
+camposComAvisoCaps.forEach(([idCampo, idAviso]) => {
+
+    const campo = document.getElementById(idCampo);
+    const aviso = document.getElementById(idAviso);
+
+    function verificarCapsLock(evento) {
+
+        const ligado = evento.getModifierState && evento.getModifierState("CapsLock");
+
+        aviso.classList.toggle("oculto", !ligado);
+    }
+
+    campo.addEventListener("keyup", verificarCapsLock);
+    campo.addEventListener("keydown", verificarCapsLock);
+
+    campo.addEventListener("blur", () => {
+        aviso.classList.add("oculto");
+    });
+
+});
+
+// ---------------- ALTERNAR ENTRE TELAS ----------------
+
+linkTrocarTela.addEventListener("click", (evento) => {
+    evento.preventDefault();
+    mostrarTela(telaAtual === "login" ? "cadastro" : "login");
+});
+
+linkTrocarTelaCadastro.addEventListener("click", (evento) => {
+    evento.preventDefault();
+    mostrarTela("login");
+});
+
+// ---------------- MENSAGENS DE ERRO EM PT-BR ----------------
+
+function traduzirErro(erro) {
+
+    const mapa = {
+        "auth/email-already-in-use": "auth.emailInUse",
+        "auth/invalid-email": "auth.invalidEmail",
+        "auth/weak-password": "auth.weakPassword",
+        "auth/user-not-found": "auth.wrongCredentials",
+        "auth/wrong-password": "auth.wrongCredentials",
+        "auth/invalid-credential": "auth.wrongCredentials",
+        "auth/too-many-requests": "auth.tooManyRequests"
+    };
+
+    return t(mapa[erro.code] || "auth.genericError");
+}
