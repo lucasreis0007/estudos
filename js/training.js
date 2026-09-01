@@ -1,12 +1,7 @@
 import { protegerPagina, carregarPerfil, salvarPerfil } from "./utils.js";
 import { garantirExerciciosSemeados, buscarLoteExercicios, registrarResposta } from "./questions-service.js";
 import { atualizarProgressoTopico } from "./adaptive-service.js";
-import { garantirVocabularioSemeado, palavrasPorMateria } from "./vocabulary-service.js";
 import { t, campoIdioma, obterIdioma, sincronizarIdiomaComPerfil, aplicarTraducoes } from "./language.js";
-
-// Cache simples em memória: evita buscar o vocabulário da mesma matéria
-// de novo a cada questão respondida dentro da mesma sessão de treino.
-const cacheVocabularioPorMateria = {};
 
 const parametros = new URLSearchParams(window.location.search);
 const subjectId = parametros.get("materia");
@@ -29,7 +24,7 @@ async function iniciar() {
     sincronizarIdiomaComPerfil(perfil);
     aplicarTraducoes();
 
-    await Promise.all([garantirExerciciosSemeados(), garantirVocabularioSemeado()]);
+    await garantirExerciciosSemeados();
     exercicios = await buscarLoteExercicios({ subjectId, uid: usuario.uid, quantidade: 10 });
 
     if (exercicios.length === 0) {
@@ -100,8 +95,6 @@ function responder(indiceEscolhido) {
     document.getElementById("explicacaoCorrecao").textContent = campoIdioma(exercicio, "explicacao");
     document.getElementById("painelCorrecao").classList.remove("oculto");
 
-    renderizarVocabularioRelacionado(exercicio);
-
     registrarResposta(usuario.uid, { exercicio, respostaIndice: indiceEscolhido, correta, tempoMs });
     atualizarProgressoTopico(usuario.uid, {
         subjectId: exercicio.subjectId,
@@ -109,47 +102,6 @@ function responder(indiceEscolhido) {
         difficulty: exercicio.difficulty,
         correta
     }).catch(erro => console.error("Erro ao atualizar progresso adaptativo:", erro));
-}
-
-// ---------------- VOCABULÁRIO TÉCNICO RELACIONADO ----------------
-// Depois de responder, mostramos 1-2 palavras técnicas da mesma matéria
-// do exercício (categoria do vocabulário = subjectId, ver
-// vocabulary-service.js) — reforço passivo de inglês técnico junto do
-// conteúdo que o usuário acabou de estudar. Isso NÃO grava progresso de
-// vocabulário: é só exibição; a prática de verdade (que atualiza domínio
-// e revisão espaçada) acontece na tela Technical English.
-async function renderizarVocabularioRelacionado(exercicio) {
-
-    const bloco = document.getElementById("blocoVocabulario");
-    const lista = document.getElementById("listaVocabularioTreino");
-
-    if (!cacheVocabularioPorMateria[exercicio.subjectId]) {
-        cacheVocabularioPorMateria[exercicio.subjectId] = await palavrasPorMateria(exercicio.subjectId);
-    }
-
-    const palavras = cacheVocabularioPorMateria[exercicio.subjectId];
-
-    if (!palavras || palavras.length === 0) {
-        bloco.classList.add("oculto");
-        return;
-    }
-
-    const escolhidas = embaralhar(palavras).slice(0, 2);
-
-    lista.innerHTML = escolhidas.map(palavra =>
-        `<p class="item-vocabulario-treino"><b>${palavra.english}</b> — ${palavra.portuguese}</p>`
-    ).join("");
-
-    bloco.classList.remove("oculto");
-}
-
-function embaralhar(lista) {
-    const copia = [...lista];
-    for (let i = copia.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [copia[i], copia[j]] = [copia[j], copia[i]];
-    }
-    return copia;
 }
 
 function proximaQuestao() {

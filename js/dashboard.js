@@ -1,7 +1,7 @@
 import { protegerPagina, carregarPerfil } from "../js/utils.js";
 import { garantirMateriasSemeadas, listarMaterias } from "../js/subjects-service.js";
 import { obterProgressoTodasMaterias, statusMateria } from "../js/adaptive-service.js";
-import { garantirVocabularioSemeado, estatisticasVocabulario } from "../js/vocabulary-service.js";
+import { VOCABULARY } from "../js/data/vocabulary.js";
 import { t, campoIdioma, sincronizarIdiomaComPerfil, aplicarTraducoes } from "../js/language.js";
 
 iniciar();
@@ -14,19 +14,18 @@ async function iniciar() {
     sincronizarIdiomaComPerfil(perfil);
     aplicarTraducoes();
 
-    await Promise.all([garantirMateriasSemeadas(), garantirVocabularioSemeado()]);
+    await garantirMateriasSemeadas();
 
-    const [materias, progressoPorMateria, statsVocabulario] = await Promise.all([
+    const [materias, progressoPorMateria] = await Promise.all([
         listarMaterias(),
-        obterProgressoTodasMaterias(usuario.uid),
-        estatisticasVocabulario(usuario.uid)
+        obterProgressoTodasMaterias(usuario.uid)
     ]);
 
     renderizarSaudacao(perfil);
     renderizarEstatisticas(perfil);
     renderizarRecomendacao(perfil, materias, progressoPorMateria);
     renderizarMaterias(materias, progressoPorMateria);
-    renderizarIngles(statsVocabulario);
+    renderizarIngles();
 
     document.getElementById("btnIniciarTreino").addEventListener("click", () => {
         window.location.href = "training.html";
@@ -115,12 +114,12 @@ function renderizarMaterias(materias, progressoPorMateria) {
 }
 
 // ---------------- TECHNICAL ENGLISH ----------------
-// Números reais, vindos de vocabulary-service.js: total de palavras do
-// banco + domínio/revisão calculados a partir do progresso de cada
-// palavra do usuário na coleção "vocabularyProgress" (etapa 8).
+// O total de palavras é real (tamanho do banco de vocabulário). Domínio
+// e revisão dependem da coleção vocabularyProgress, que ainda não existe
+// (entra na etapa 8) — por isso começam em 0, não inventados.
 
-function renderizarIngles(stats) {
-    document.getElementById("vocabTotal").textContent = stats.total;
-    document.getElementById("vocabDominadas").textContent = stats.mastered;
-    document.getElementById("vocabRevisar").textContent = stats.review;
+function renderizarIngles() {
+    document.getElementById("vocabTotal").textContent = VOCABULARY.length;
+    document.getElementById("vocabDominadas").textContent = 0;
+    document.getElementById("vocabRevisar").textContent = 0;
 }
