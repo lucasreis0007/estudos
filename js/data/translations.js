@@ -96,9 +96,27 @@ export const TRANSLATIONS = {
         "training.noExercises": "Ainda não há exercícios cadastrados para esta matéria.",
         "training.summaryResult": "Você acertou <strong>{acertos} de {total}</strong> questões.",
         "training.xpEarned": "+{xp} XP",
+        "training.relatedVocabulary": "🔤 Vocabulário Técnico",
         "difficulty.basic": "🟢 Basic",
         "difficulty.intermediate": "🟡 Intermediate",
-        "difficulty.advanced": "🔴 Advanced"
+        "difficulty.advanced": "🔴 Advanced",
+
+        // Technical English / Vocabulário
+        "vocabulary.title": "🔤 Technical English",
+        "vocabulary.subtitle": "Vocabulário técnico de Eletromecânica",
+        "vocabulary.learning": "Aprendendo",
+        "vocabulary.allSubjects": "Todas as matérias",
+        "vocabulary.startPractice": "🎯 Praticar Vocabulário",
+        "vocabulary.showTranslation": "Mostrar tradução",
+        "vocabulary.knewIt": "✅ Eu sabia",
+        "vocabulary.didntKnow": "❌ Não sabia",
+        "vocabulary.exitPractice": "Encerrar prática",
+        "vocabulary.practiceDone": "Prática concluída!",
+        "vocabulary.backToList": "Voltar à lista",
+        "vocabulary.allCaughtUp": "Nenhuma palavra pendente agora. Você está em dia com o vocabulário! 🎉",
+        "vocabulary.noWords": "Nenhuma palavra cadastrada para esta matéria ainda.",
+        "vocabulary.wordOf": "Palavra {atual} de {total}",
+        "vocabulary.practiceSummary": "Você acertou <strong>{acertos} de {total}</strong> palavras."
     },
 
     en: {
@@ -191,8 +209,26 @@ export const TRANSLATIONS = {
         "training.noExercises": "No exercises added to this subject yet.",
         "training.summaryResult": "You got <strong>{acertos} of {total}</strong> questions right.",
         "training.xpEarned": "+{xp} XP",
+        "training.relatedVocabulary": "🔤 Technical Vocabulary",
         "difficulty.basic": "🟢 Basic",
         "difficulty.intermediate": "🟡 Intermediate",
-        "difficulty.advanced": "🔴 Advanced"
+        "difficulty.advanced": "🔴 Advanced",
+
+        // Technical English / Vocabulary
+        "vocabulary.title": "🔤 Technical English",
+        "vocabulary.subtitle": "Electromechanical technical vocabulary",
+        "vocabulary.learning": "Learning",
+        "vocabulary.allSubjects": "All subjects",
+        "vocabulary.startPractice": "🎯 Practice Vocabulary",
+        "vocabulary.showTranslation": "Show translation",
+        "vocabulary.knewIt": "✅ I knew it",
+        "vocabulary.didntKnow": "❌ I didn't know",
+        "vocabulary.exitPractice": "End practice",
+        "vocabulary.practiceDone": "Practice complete!",
+        "vocabulary.backToList": "Back to list",
+        "vocabulary.allCaughtUp": "No words pending right now. You're all caught up! 🎉",
+        "vocabulary.noWords": "No words added to this subject yet.",
+        "vocabulary.wordOf": "Word {atual} of {total}",
+        "vocabulary.practiceSummary": "You got <strong>{acertos} of {total}</strong> words right."
     }
 };
