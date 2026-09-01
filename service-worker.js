@@ -1,10 +1,10 @@
 // Suba esse número toda vez que a lista de arquivos abaixo mudar, pra
 // forçar os clientes a buscar a versão nova.
-const CACHE_NOME = "openmind-cache-v4";
+const CACHE_NOME = "openmind-cache-v5";
 
-// NOTA: esta lista ainda vai crescer nas próximas etapas (training.html,
-// subjects.html, progress.html, profile.html, vocabulary.html,
-// simulator.html + seus css/js) — por enquanto só o que já existe.
+// NOTA: esta lista ainda vai crescer nas próximas etapas (progress.html,
+// profile.html, simulator.html + seus css/js) — por enquanto só o que
+// já existe.
 const ARQUIVOS_PARA_CACHE = [
     "./index.html",
     "./css/style.css",
@@ -19,6 +19,7 @@ const ARQUIVOS_PARA_CACHE = [
     "./js/subjects-service.js",
     "./js/questions-service.js",
     "./js/adaptive-service.js",
+    "./js/vocabulary-service.js",
     "./manifest.json",
     "./css/nav-lateral.css",
 
@@ -33,6 +34,10 @@ const ARQUIVOS_PARA_CACHE = [
     "./pages/training.html",
     "./css/training.css",
     "./js/training.js",
+
+    "./pages/vocabulary.html",
+    "./css/vocabulary.css",
+    "./js/vocabulary.js",
 
     "./pages/historico.html",
     "./css/historico.css",
