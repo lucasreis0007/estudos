@@ -1,0 +1,198 @@
+// ---------------- DICIONÁRIO DE TRADUÇÕES ----------------
+// Chave única por string de interface. Nada de matéria/pergunta aqui —
+// esse conteúdo é bilíngue nos próprios dados (namePt/nameEn,
+// questionPt/questionEn etc.) e é resolvido por campoIdioma() em
+// language.js. Este arquivo é só "texto de interface fixo".
+
+export const TRANSLATIONS = {
+
+    pt: {
+        // Navegação
+        "nav.home": "Início",
+        "nav.training": "Treino",
+        "nav.subjects": "Matérias",
+        "nav.simulator": "Simulado",
+        "nav.vocabulary": "Technical English",
+        "nav.progress": "Progresso",
+        "nav.history": "Histórico",
+        "nav.profile": "Perfil",
+
+        // Idioma
+        "language.label": "Idioma",
+
+        // Login / Cadastro
+        "login.subtitle": "Entre com seu e-mail e senha.",
+        "login.submit": "Entrar",
+        "login.switchToRegister": "Não tenho conta ainda",
+        "register.subtitle": "Crie sua conta com e-mail e senha.",
+        "register.submit": "Criar conta",
+        "register.switchToLogin": "Já tenho conta, fazer login",
+        "auth.capsLock": "Caps Lock está ativado",
+        "auth.emailInUse": "Esse e-mail já está cadastrado.",
+        "auth.invalidEmail": "E-mail inválido.",
+        "auth.weakPassword": "A senha precisa ter pelo menos 6 caracteres.",
+        "auth.wrongCredentials": "Usuário ou senha incorretos.",
+        "auth.tooManyRequests": "Muitas tentativas. Aguarde um pouco e tente de novo.",
+        "auth.genericError": "Não foi possível concluir. Tente novamente.",
+        "auth.passwordMismatch": "As senhas não coincidem.",
+
+        // Dashboard
+        "dashboard.greetingMorning": "Bom dia",
+        "dashboard.greetingAfternoon": "Boa tarde",
+        "dashboard.greetingEvening": "Boa noite",
+        "dashboard.tagline": "OpenMind · Learn. Practice. Evolve.",
+        "dashboard.todaysTraining": "Treino de Hoje",
+        "dashboard.startTraining": "Iniciar Treino",
+        "dashboard.streak": "Sequência",
+        "dashboard.xp": "XP",
+        "dashboard.level": "Nível",
+        "dashboard.exercises": "Exercícios",
+        "dashboard.accuracy": "Taxa de acertos",
+        "dashboard.subjects": "Matérias",
+        "dashboard.seeAll": "Ver todas",
+        "dashboard.technicalEnglish": "Technical English",
+        "dashboard.seeAllVocab": "Ver tudo",
+        "dashboard.words": "Palavras",
+        "dashboard.mastered": "Dominadas",
+        "dashboard.review": "Revisar",
+        "dashboard.notStarted": "Ainda não iniciado",
+        "dashboard.noTrainingYet": "Você ainda não fez nenhum treino. Que tal começar agora com sua primeira sessão de 60 minutos?",
+        "dashboard.keepGoing": "Continue de onde parou — vamos manter sua sequência de estudos.",
+        "dashboard.needsReview": "Hoje precisamos revisar",
+
+        // Status de matéria
+        "status.mastered": "🟢 Dominado",
+        "status.developing": "🟡 Em desenvolvimento",
+        "status.needsReview": "🔴 Precisa revisar",
+
+        // Matérias / Assuntos
+        "subjects.title": "📚 Matérias",
+        "subjects.subtitle": "Escolha uma matéria para estudar",
+        "subjects.addSubject": "+ Add Subject",
+        "subjects.addTopic": "+ Add Topic",
+        "subjects.newSubject": "Nova matéria",
+        "subjects.newTopic": "Novo assunto",
+        "subjects.namePt": "Nome em português",
+        "subjects.nameEn": "Name in English",
+        "subjects.description": "Descrição (opcional)",
+        "subjects.difficulty": "Dificuldade inicial",
+        "subjects.save": "Salvar",
+        "subjects.cancel": "Cancelar",
+        "subjects.backToList": "← Todas as matérias",
+        "subjects.trainThisSubject": "🎯 Treinar esta matéria",
+        "subjects.noTopics": "Nenhum assunto cadastrado ainda nesta matéria.",
+
+        // Treino
+        "training.title": "🎯 Treino",
+        "training.loading": "Carregando...",
+        "training.noneAvailable": "Nenhum exercício",
+        "training.questionOf": "Questão {atual} de {total}",
+        "training.correct": "✅ Correto!",
+        "training.incorrect": "❌ Incorreto",
+        "training.next": "Próxima",
+        "training.finished": "Treino concluído!",
+        "training.backToDashboard": "Voltar ao Dashboard",
+        "training.backToHome": "Voltar ao início",
+        "training.noExercises": "Ainda não há exercícios cadastrados para esta matéria.",
+        "training.summaryResult": "Você acertou <strong>{acertos} de {total}</strong> questões.",
+        "training.xpEarned": "+{xp} XP",
+        "difficulty.basic": "🟢 Basic",
+        "difficulty.intermediate": "🟡 Intermediate",
+        "difficulty.advanced": "🔴 Advanced"
+    },
+
+    en: {
+        // Navigation
+        "nav.home": "Home",
+        "nav.training": "Training",
+        "nav.subjects": "Subjects",
+        "nav.simulator": "Simulated Test",
+        "nav.vocabulary": "Technical English",
+        "nav.progress": "Progress",
+        "nav.history": "History",
+        "nav.profile": "Profile",
+
+        // Language
+        "language.label": "Language",
+
+        // Login / Register
+        "login.subtitle": "Sign in with your email and password.",
+        "login.submit": "Sign in",
+        "login.switchToRegister": "I don't have an account yet",
+        "register.subtitle": "Create your account with email and password.",
+        "register.submit": "Create account",
+        "register.switchToLogin": "I already have an account, sign in",
+        "auth.capsLock": "Caps Lock is on",
+        "auth.emailInUse": "This email is already registered.",
+        "auth.invalidEmail": "Invalid email.",
+        "auth.weakPassword": "Password must be at least 6 characters.",
+        "auth.wrongCredentials": "Incorrect email or password.",
+        "auth.tooManyRequests": "Too many attempts. Please wait a moment and try again.",
+        "auth.genericError": "Couldn't complete that. Please try again.",
+        "auth.passwordMismatch": "Passwords don't match.",
+
+        // Dashboard
+        "dashboard.greetingMorning": "Good morning",
+        "dashboard.greetingAfternoon": "Good afternoon",
+        "dashboard.greetingEvening": "Good evening",
+        "dashboard.tagline": "OpenMind · Learn. Practice. Evolve.",
+        "dashboard.todaysTraining": "Today's Training",
+        "dashboard.startTraining": "Start Training",
+        "dashboard.streak": "Streak",
+        "dashboard.xp": "XP",
+        "dashboard.level": "Level",
+        "dashboard.exercises": "Exercises",
+        "dashboard.accuracy": "Accuracy",
+        "dashboard.subjects": "Subjects",
+        "dashboard.seeAll": "See all",
+        "dashboard.technicalEnglish": "Technical English",
+        "dashboard.seeAllVocab": "See all",
+        "dashboard.words": "Words",
+        "dashboard.mastered": "Mastered",
+        "dashboard.review": "Review",
+        "dashboard.notStarted": "Not started yet",
+        "dashboard.noTrainingYet": "You haven't trained yet. How about starting your first 60-minute session now?",
+        "dashboard.keepGoing": "Pick up where you left off — let's keep your study streak going.",
+        "dashboard.needsReview": "Today we need to review",
+
+        // Subject status
+        "status.mastered": "🟢 Mastered",
+        "status.developing": "🟡 Developing",
+        "status.needsReview": "🔴 Needs review",
+
+        // Subjects / Topics
+        "subjects.title": "📚 Subjects",
+        "subjects.subtitle": "Choose a subject to study",
+        "subjects.addSubject": "+ Add Subject",
+        "subjects.addTopic": "+ Add Topic",
+        "subjects.newSubject": "New subject",
+        "subjects.newTopic": "New topic",
+        "subjects.namePt": "Name in Portuguese",
+        "subjects.nameEn": "Name in English",
+        "subjects.description": "Description (optional)",
+        "subjects.difficulty": "Starting difficulty",
+        "subjects.save": "Save",
+        "subjects.cancel": "Cancel",
+        "subjects.backToList": "← All subjects",
+        "subjects.trainThisSubject": "🎯 Train this subject",
+        "subjects.noTopics": "No topics added to this subject yet.",
+
+        // Training
+        "training.title": "🎯 Training",
+        "training.loading": "Loading...",
+        "training.noneAvailable": "No exercises",
+        "training.questionOf": "Question {atual} of {total}",
+        "training.correct": "✅ Correct!",
+        "training.incorrect": "❌ Incorrect",
+        "training.next": "Next",
+        "training.finished": "Training complete!",
+        "training.backToDashboard": "Back to Dashboard",
+        "training.backToHome": "Back to home",
+        "training.noExercises": "No exercises added to this subject yet.",
+        "training.summaryResult": "You got <strong>{acertos} of {total}</strong> questions right.",
+        "training.xpEarned": "+{xp} XP",
+        "difficulty.basic": "🟢 Basic",
+        "difficulty.intermediate": "🟡 Intermediate",
+        "difficulty.advanced": "🔴 Advanced"
+    }
+};
