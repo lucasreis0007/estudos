@@ -183,35 +183,6 @@ body{
     background:#1D4ED8;
 }
 
-/* ---------------- VOCABULÁRIO RELACIONADO ---------------- */
-
-.bloco-vocabulario{
-    background:#EFF6FF;
-    border:1px solid #BFDBFE;
-    border-radius:12px;
-    padding:12px 14px;
-    margin-bottom:14px;
-}
-
-.vocabulario-titulo{
-    font-size:12px;
-    font-weight:bold;
-    color:#1E3A8A;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    margin-bottom:8px;
-}
-
-.item-vocabulario-treino{
-    font-size:13px;
-    color:#1E293B;
-    padding:4px 0;
-}
-
-.item-vocabulario-treino b{
-    color:#2563EB;
-}
-
 /* ---------------- RESULTADO FINAL ---------------- */
 
 .card-resultado{
