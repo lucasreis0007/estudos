@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical English · OpenMind</title>
+
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#2563EB">
+    <link rel="apple-touch-icon" href="../img/icons/icon-192.png">
+    <link rel="icon" href="../img/icons/icon-192.png">
+
+    <link rel="stylesheet" href="../css/vocabulary.css">
+    <link rel="stylesheet" href="../css/nav-lateral.css">
+</head>
+<body>
+
+<header class="header">
+    <button class="voltar" onclick="window.location.href='dashboard.html'">←</button>
+    <div class="header-texto">
+        <h1 data-i18n="vocabulary.title">🔤 Technical English</h1>
+        <p data-i18n="vocabulary.subtitle">Vocabulário técnico de Eletromecânica</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- ---------------- ESTATÍSTICAS ---------------- -->
+    <section class="grid-stats-vocab">
+        <div class="stat-card">
+            <span class="stat-valor" id="statTotal">0</span>
+            <span class="stat-rotulo" data-i18n="dashboard.words">Palavras</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-valor" id="statDominadas">0</span>
+            <span class="stat-rotulo" data-i18n="dashboard.mastered">Dominadas</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-valor" id="statAprendendo">0</span>
+            <span class="stat-rotulo" data-i18n="vocabulary.learning">Aprendendo</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-valor" id="statRevisar">0</span>
+            <span class="stat-rotulo" data-i18n="dashboard.review">Revisar</span>
+        </div>
+    </section>
+
+    <button class="botao-praticar" id="btnIniciarPratica" data-i18n="vocabulary.startPractice">🎯 Praticar Vocabulário</button>
+
+    <!-- ---------------- FILTRO POR MATÉRIA ---------------- -->
+    <div class="filtro-materia">
+        <select id="seletorMateria">
+            <option value="" data-i18n="vocabulary.allSubjects">Todas as matérias</option>
+        </select>
+    </div>
+
+    <!-- ---------------- LISTA DE PALAVRAS ---------------- -->
+    <section id="viewLista">
+        <div class="lista-palavras" id="listaPalavras"></div>
+    </section>
+
+    <!-- ---------------- MODO PRÁTICA (flashcard) ---------------- -->
+    <section id="viewPratica" class="oculto">
+
+        <div class="barra-progresso-topo">
+            <div class="barra-progresso-topo-preenchimento" id="barraProgressoPratica"></div>
+        </div>
+        <p class="contador-pratica" id="contadorPratica"></p>
+
+        <div class="flashcard" id="flashcard">
+            <span class="flashcard-categoria" id="flashcardCategoria"></span>
+            <h2 class="flashcard-palavra" id="flashcardPalavra"></h2>
+
+            <div id="flashcardFrente">
+                <button class="botao-primario" id="btnMostrarTraducao" data-i18n="vocabulary.showTranslation">Mostrar tradução</button>
+            </div>
+
+            <div id="flashcardVerso" class="oculto">
+                <p class="flashcard-traducao" id="flashcardTraducao"></p>
+                <p class="flashcard-exemplo" id="flashcardExemploEn"></p>
+                <p class="flashcard-exemplo" id="flashcardExemploPt"></p>
+
+                <div class="flashcard-acoes">
+                    <button class="botao-nao-sabia" id="btnNaoSabia" data-i18n="vocabulary.didntKnow">❌ Não sabia</button>
+                    <button class="botao-sabia" id="btnSabia" data-i18n="vocabulary.knewIt">✅ Eu sabia</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="link-sair-pratica" id="btnSairPratica" data-i18n="vocabulary.exitPractice">Encerrar prática</button>
+    </section>
+
+    <!-- ---------------- FIM DA PRÁTICA ---------------- -->
+    <section id="viewFimPratica" class="oculto">
+        <div class="card-resultado">
+            <span class="resultado-icone">🎉</span>
+            <h2 data-i18n="vocabulary.practiceDone">Prática concluída!</h2>
+            <p class="resultado-resumo" id="resumoPratica"></p>
+            <button class="botao-primario" id="btnVoltarLista" data-i18n="vocabulary.backToList">Voltar à lista</button>
+        </div>
+    </section>
+
+    <!-- ---------------- SEM PALAVRAS PARA PRATICAR ---------------- -->
+    <section id="viewSemPratica" class="oculto">
+        <p class="carregando" data-i18n="vocabulary.allCaughtUp">Nenhuma palavra pendente agora. Você está em dia com o vocabulário! 🎉</p>
+    </section>
+
+</main>
+
+<script type="module" src="../js/vocabulary.js"></script>
+<script src="../js/pwa.js"></script>
+<script type="module" src="../js/nav-lateral.js"></script>
+
+</body>
+</html>
