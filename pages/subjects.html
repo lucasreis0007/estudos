@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matérias · OpenMind</title>
+
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#2563EB">
+    <link rel="apple-touch-icon" href="../img/icons/icon-192.png">
+    <link rel="icon" href="../img/icons/icon-192.png">
+
+    <link rel="stylesheet" href="../css/subjects.css">
+    <link rel="stylesheet" href="../css/nav-lateral.css">
+</head>
+<body>
+
+<header class="header">
+    <button class="voltar" onclick="window.location.href='dashboard.html'">←</button>
+    <div class="header-texto">
+        <h1 id="tituloPagina">📚 Matérias</h1>
+        <p id="subtituloPagina">Escolha uma matéria para estudar</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- ---------------- VISÃO: LISTA DE MATÉRIAS ---------------- -->
+    <section id="viewMaterias">
+
+        <div class="grid-materias" id="gridMaterias">
+            <p class="carregando">Carregando matérias...</p>
+        </div>
+
+        <button class="botao-adicionar" id="btnMostrarFormMateria" data-i18n="subjects.addSubject">+ Add Subject</button>
+
+        <form id="formMateria" class="form-card oculto">
+            <h3 data-i18n="subjects.newSubject">Nova matéria</h3>
+            <label><span data-i18n="subjects.namePt">Nome em português</span>
+                <input type="text" id="materiaNomePt" required>
+            </label>
+            <label><span data-i18n="subjects.nameEn">Name in English</span>
+                <input type="text" id="materiaNomeEn" required>
+            </label>
+            <label><span data-i18n="subjects.description">Descrição (opcional)</span>
+                <textarea id="materiaDescricao" rows="2"></textarea>
+            </label>
+            <div class="form-acoes">
+                <button type="button" class="botao-secundario" id="btnCancelarMateria" data-i18n="subjects.cancel">Cancelar</button>
+                <button type="submit" class="botao-primario" data-i18n="subjects.save">Salvar matéria</button>
+            </div>
+        </form>
+
+    </section>
+
+    <!-- ---------------- VISÃO: ASSUNTOS DE UMA MATÉRIA ---------------- -->
+    <section id="viewTopicos" class="oculto">
+
+        <a href="subjects.html" class="link-voltar-lista" data-i18n="subjects.backToList">← Todas as matérias</a>
+
+        <button class="botao-treinar-materia" id="btnTreinarMateria" data-i18n="subjects.trainThisSubject">🎯 Treinar esta matéria</button>
+
+        <div class="lista-topicos" id="listaTopicos"></div>
+
+        <button class="botao-adicionar" id="btnMostrarFormTopico" data-i18n="subjects.addTopic">+ Add Topic</button>
+
+        <form id="formTopico" class="form-card oculto">
+            <h3 data-i18n="subjects.newTopic">Novo assunto</h3>
+            <label><span data-i18n="subjects.namePt">Português</span>
+                <input type="text" id="topicoNomePt" required>
+            </label>
+            <label><span data-i18n="subjects.nameEn">English</span>
+                <input type="text" id="topicoNomeEn" required>
+            </label>
+            <label><span data-i18n="subjects.description">Descrição (opcional)</span>
+                <textarea id="topicoDescricao" rows="2"></textarea>
+            </label>
+            <label><span data-i18n="subjects.difficulty">Dificuldade inicial</span>
+                <select id="topicoDificuldade">
+                    <option value="basic" data-i18n="difficulty.basic">🟢 Basic</option>
+                    <option value="intermediate" data-i18n="difficulty.intermediate">🟡 Intermediate</option>
+                    <option value="advanced" data-i18n="difficulty.advanced">🔴 Advanced</option>
+                </select>
+            </label>
+            <div class="form-acoes">
+                <button type="button" class="botao-secundario" id="btnCancelarTopico" data-i18n="subjects.cancel">Cancelar</button>
+                <button type="submit" class="botao-primario" data-i18n="subjects.save">Salvar assunto</button>
+            </div>
+        </form>
+
+    </section>
+
+</main>
+
+<script type="module" src="../js/subjects.js"></script>
+<script src="../js/pwa.js"></script>
+<script type="module" src="../js/nav-lateral.js"></script>
+
+</body>
+</html>
